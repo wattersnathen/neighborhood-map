@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <title>Neighborhood Map</title>
+    <style>
+    html, body, #map { margin: 0; padding: 0; height: 100%; }
+    .coordinates { z-index: 999; position: fixed; top: 20px; right: 20px; }
+    </style>
+</head>
+<body>
+    <div id="map" data-bind="map: googleMap"></div>
+    <div class="coordinates">
+        <input type="text" data-bind="value: googleMap().lat"/>
+        <input type="text" data-bind="value: googleMap().lng"/>
+    </div>
+
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="./css/app.css"/>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBIVxF2SP7ozlaVsOfTB8nj-1TJhkP3NsI"></script>
+    <script src="./bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="./bower_components/knockout/dist/knockout.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
