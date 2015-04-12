@@ -18,6 +18,7 @@ function Map() {
             lng: ko.observable()
         }),
         address: ko.observable(),
+        meetups: ko.observableArray(meetup.meetups)
     };
 
     self.getCurrentPosition = function() {
