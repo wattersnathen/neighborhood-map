@@ -76,7 +76,13 @@ function Map() {
             );
             var mapOptions = {
                 center: latLng,
-                zoom: 14,
+                zoom: 12,
+                zoomControlOptions: {
+                    position: google.maps.ControlPosition.TOP_RIGHT
+                },
+                panControlOptions: {
+                    position: google.maps.ControlPosition.TOP_RIGHT
+                },
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             mapObj.googleMap = new google.maps.Map(element, mapOptions);
