@@ -9,6 +9,7 @@ function Map() {
 
     self.searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
 
+    // Use Google's Geocoder to get latitude and longitude from an address and vice-versa
     self.geocoder = new google.maps.Geocoder();
 
     self.viewModel = {
@@ -89,6 +90,7 @@ function Map() {
             };
             mapObj.googleMap = new google.maps.Map(element, mapOptions);
 
+            // change map location when coordinates change
             mapObj.onChangeCoord = function(newValue) {
                 var latLng = new google.maps.LatLng(
                     ko.utils.unwrapObservable(mapObj.lat),
