@@ -22,15 +22,19 @@ function Map() {
             navigator.geolocation.getCurrentPosition(
                 // geolocation exists and user allowed
                 function success(position) {
-                    self.viewModel.googleMap().lat(position.coords.latitude);
-                    self.viewModel.googleMap().lng(position.coords.longitude);
+                    var lat = position.coords.latitude;
+                    var lng = position.coords.longitude;
+                    self.viewModel.googleMap().lat(lat);
+                    self.viewModel.googleMap().lng(lng);
+                    self.getLocationFromLatLng(lat, lng)
                 },
                 // geolocation exists, but user denied
                 function error() {
                     self.setDefaultPosition();
                 }
             );
-        } else { // geolocation not defined
+        } else { 
+            // geolocation not defined
             self.setDefaultPosition();
         }
     };
@@ -60,6 +64,7 @@ function Map() {
         // coordinates for Boulder, CO. where a lot of Meetups usually are
         self.viewModel.googleMap().lat(40.015);
         self.viewModel.googleMap().lng(-105.27);
+        self.getLocationFromLatLng(self.viewModel.googleMap().lat(), self.viewModel.googleMap().lng());
     };
 
     ko.bindingHandlers.map = {
