@@ -3,6 +3,10 @@ function Map() {
 
     var self = this;
 
+    // Reference to the current center of the map.
+    // Used for searching Meetups within 'x' amount of miles from the current center
+    self.center = {}; 
+
     self.geocoder = new google.maps.Geocoder();
 
     self.viewModel = {
@@ -56,7 +60,17 @@ function Map() {
                     ko.utils.unwrapObservable(mapObj.lng)
                 );
                 mapObj.googleMap.setCenter(latLng);
+
+                // get the center of the map every time the user searches a new location
+                self.center = mapObj.googleMap.getCenter();
             };
+
+            // event fires after user finishes dragging map
+            google.maps.event.addListener(mapObj.googleMap, 'dragend', function() {
+                
+                // get the updated coordinates for the center of the map
+                self.center = mapObj.googleMap.getCenter();
+            });
 
             mapObj.lat.subscribe(mapObj.onChangeCoord);
             mapObj.lng.subscribe(mapObj.onChangeCoord);
