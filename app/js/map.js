@@ -13,7 +13,8 @@ function Map() {
         googleMap: ko.observable({
             lat: ko.observable(),
             lng: ko.observable()
-        })
+        }),
+        address: ko.observable(),
     };
 
     self.getCurrentPosition = function() {
@@ -32,6 +33,27 @@ function Map() {
         } else { // geolocation not defined
             self.setDefaultPosition();
         }
+    };
+
+    self.getLocationFromLatLng = function(latitude, longitude) {
+        var pos = new google.maps.LatLng(latitude, longitude);
+        self.geocoder.geocode({ 'latLng': pos }, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                var addr = '';
+                for (var i = 0, len = results[0].address_components.length; i < len; i++) {
+                    if (results[0].address_components[i].types[0] === 'locality') {
+                        addr += results[0].address_components[i].long_name + ', ';
+                    }
+                    if (results[0].address_components[i].types[0] === 'administrative_area_level_1') {
+                        addr += results[0].address_components[i].short_name + ' ';
+                    }
+                    if (results[0].address_components[i].types[0] === 'postal_code') {
+                        addr += results[0].address_components[i].long_name;
+                    }
+                }
+                self.viewModel.address(addr);
+            }
+        });
     };
 
     self.setDefaultPosition = function() {
