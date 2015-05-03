@@ -10,13 +10,9 @@
 <body>
     <div id="map" data-bind="map: googleMap"></div>
     <div class="container">
-        <section id="search" class="row">
+        <section id="search">
             <input type="text" data-bind="value: address" id="pac-input" class="controls"/>
         </section>
-    </div>
-    <div class="coordinates">
-        <input type="text" data-bind="value: googleMap().lat"/>
-        <input type="text" data-bind="value: googleMap().lng"/>
     </div>
 
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBIVxF2SP7ozlaVsOfTB8nj-1TJhkP3NsI"></script>
