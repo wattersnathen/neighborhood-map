@@ -13,6 +13,11 @@
         <section id="search">
             <input type="text" data-bind="value: address" id="pac-input" class="controls"/>
         </section>
+        <section id="results" data-bind="foreach: meetups">
+            <div>
+                test
+            </div>
+        </section>
     </div>
 
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBIVxF2SP7ozlaVsOfTB8nj-1TJhkP3NsI"></script>
