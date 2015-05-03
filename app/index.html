@@ -4,25 +4,8 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <title>Neighborhood Map</title>
-    <style>
-    * { box-sizing: border-box; }
-    html, body, #map { margin: 0; padding: 0; height: 100%; }
-    .container {
-        position: fixed;
-        top: .4em;
-        left: .25em;
-        z-index: 999;
-        max-width: 280px;
-    }
-    #search, #pac-input {
-        width: 100%;
-    }
-    #pac-input {
-        font-size: .9em;
-        padding-left: .1em;
-    }
-    .coordinates { z-index: 999; position: fixed; top: 200px; left: 20px; }
-    </style>
+    <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="./css/app.css"/>
 </head>
 <body>
     <div id="map" data-bind="map: googleMap"></div>
@@ -36,9 +19,6 @@
         <input type="text" data-bind="value: googleMap().lng"/>
     </div>
 
-    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css"/>
-    <link rel="stylesheet" href="./css/app.css"/>
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBIVxF2SP7ozlaVsOfTB8nj-1TJhkP3NsI"></script>
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <script src="./bower_components/knockout/dist/knockout.js"></script>
