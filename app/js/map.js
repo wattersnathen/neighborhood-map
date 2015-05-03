@@ -18,8 +18,8 @@ function Map() {
             lng: ko.observable()
         }),
         address: ko.observable(),
-        meetups: ko.observableArray(meetup.meetups)
-    };
+        meetups: meetup.viewModel.meetups
+    };    
 
     self.getCurrentPosition = function() {
         if (navigator.geolocation) {
