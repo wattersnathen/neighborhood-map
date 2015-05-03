@@ -112,8 +112,8 @@ function Map() {
 
             google.maps.event.addListener(self.searchBox, 'places_changed', function() {
                 var places = self.searchBox.getPlaces();
-                var lat = places[0].geometry.location.k;
-                var lng = places[0].geometry.location.D;
+                var lat = places[0].geometry.location.A;
+                var lng = places[0].geometry.location.F;
                 self.getLocationFromLatLng(lat, lng);
                 self.viewModel.googleMap().lat(lat);
                 self.viewModel.googleMap().lng(lng);
