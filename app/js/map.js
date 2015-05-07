@@ -124,6 +124,7 @@ function Map() {
 
                 // get the center of the map every time the user searches a new location
                 self.center = mapObj.googleMap.getCenter();
+                self.getLocationFromLatLng(self.center.A, self.center.F);
             };
 
             // event fires after user finishes dragging map
@@ -131,6 +132,7 @@ function Map() {
                 
                 // get the updated coordinates for the center of the map
                 self.center = mapObj.googleMap.getCenter();
+                self.getLocationFromLatLng(self.center.A, self.center.F);
             });
 
             google.maps.event.addListener(self.searchBox, 'places_changed', function() {
