@@ -3,9 +3,13 @@ function Map() {
 
     var self = this;
 
+    self.map;
+
     // Reference to the current center of the map.
     // Used for searching Meetups within 'x' amount of miles from the current center
     self.center = {}; 
+
+    self.zipCode;
 
     self.searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
 
