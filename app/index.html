@@ -13,6 +13,10 @@
         <section id="search">
             <input type="text" data-bind="value: address" id="pac-input" class="controls"/>
         </section>
+        <div id="loading" style="display: none;">
+            <img src="ajax-loader.gif">
+            <p>...loading Meetups</p>
+        </div>
         <section id="results" data-bind="foreach: meetups">
             <div>
                 test

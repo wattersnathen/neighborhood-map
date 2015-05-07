@@ -27,6 +27,16 @@ body,
     height: 35px;
 }
 
+#loading {
+    margin-top: 5em;
+    text-align: center;
+}
+
+#loading img {
+    width: 50px;
+    height: 100%;
+}
+
 #results {
     border: 1px solid black;
     padding-left: .5em;
