@@ -47,6 +47,30 @@ body,
     overflow-x: hidden;
 }
 
+#results::-webkit-scrollbar {
+    width: 14px;
+    background-color: #afafaf;
+    border: 1px solid black;
+    box-shadow: 0px 0px 5px 0px black;
+}
+
+#results::-webkit-scrollbar-thumb {
+    background-color: #B03C3F;
+    min-height: 50px;
+}
+
+#results::-webkit-scrollbar-thumb:hover {
+    background-color: #BF4649;
+    border: 1px solid #333;
+}
+
+#results::-webkit-scrollbar-thumb:active {
+    background-color: #A6393D;
+    border: 1px solid white;
+}
+
+#results::-webkit-scrollbar-track {
+    border: 1px solid black;
 }
 
 #pac-input {
