@@ -80,4 +80,25 @@ body,
     padding-left: .5em;
     border: 1px solid black;
     box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.4);
+
+.meetup {
+    border: 1px solid black;
+    padding: 0 .5em;
+    margin-bottom: .25em;
+    margin-right: .25em;
+    background-color: rgba(176, 60, 63, .8);
+}
+
+.meetup:hover {
+    background-color: rgba(176, 60, 63, .65);
+}
+
+.meetup h1 {
+    font-size: .88em;
+    font-weight: 900;
+}
+
+.meetup h2,
+.meetup p {
+    font-size: .8em;
 }
