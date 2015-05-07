@@ -10,6 +10,18 @@ body,
     height: 100%; 
 }
 
+a {
+    text-decoration: none;
+}
+
+.container a {
+    color: white;
+}
+
+.container a:hover {
+    color: black;
+}
+
 .container {
     position: fixed;
     top: 0;
@@ -20,7 +32,7 @@ body,
     z-index: 999;
     border: 2px solid black;
     background: #cfcfcf;
-    box-shadow: inset 0px .2em 60px 0px rgba(0, 0, 0, 0.8);
+    box-shadow: inset 0px .2em 60px 0px rgba(0, 0, 0, 0.9);
 }
 
 #search {
@@ -38,10 +50,6 @@ body,
 }
 
 #results {
-    border: 1px solid black;
-    padding-left: .5em;
-    padding-right: .5em;
-    padding-bottom: .5em;
     max-height: 95%;
     overflow-y: auto;
     overflow-x: hidden;
@@ -80,6 +88,7 @@ body,
     padding-left: .5em;
     border: 1px solid black;
     box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.4);
+}
 
 .meetup {
     border: 1px solid black;
