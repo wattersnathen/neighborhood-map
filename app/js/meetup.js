@@ -17,6 +17,7 @@ var meetup = {
                         return;
                     }
                     meetup.viewModel.meetups.push(value);                    
+                    meetup.viewModel.markers.push(meetup.createMarker(value, map));
                 });
             }
         })
