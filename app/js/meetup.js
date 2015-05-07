@@ -3,7 +3,7 @@ var meetup = {
     viewModel: {
         meetups: ko.observableArray([]),
     },    
-    getUpcomingMeetups: function(rad, zipCode) {
+    getUpcomingMeetups: function(rad, zipCode, map) {
         var url = 'https://api.meetup.com/2/open_events?sign=true&photo-host=public&status=upcoming&zip=' + zipCode + '&radius=' + rad + '&key=' + meetup.key;
         $.ajax({
             url: url,
