@@ -21,6 +21,15 @@ var meetup = {
             }
         })
     },
+    createMarker: function(value, map) {
+        var pos = new google.maps.LatLng(value.venue.lat, value.venue.lon);
+        var marker = new google.maps.Marker({
+            position: pos,
+            map: map
+        });
+
+        var date = moment(value.time).toDate();
+        date = moment(date).format('MMMM Do YYYY, h:mm a');
 
         var content = 
             '<div class="infowindow">' +
@@ -35,6 +44,23 @@ var meetup = {
                 '<p>' + value.description + '</p>' +
             '</div>';
 
+        marker.info = new google.maps.InfoWindow({
+            content: content
+        });
+
+        marker.id = value.id;
+
+        marker.date = date;
+
+        google.maps.event.addListener(marker, 'click', function() {
+            for (var i in meetup.viewModel.markers()) {
+                meetup.viewModel.markers()[i].info.close();
+            }
+            marker.info.open(map, marker);
+        });
+
+        return marker;
+    }
 };
 
 // custom binding for handling the date format of the events returned.
