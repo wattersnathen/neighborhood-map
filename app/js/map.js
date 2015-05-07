@@ -70,6 +70,7 @@ function Map() {
                         addr += results[0].address_components[i].short_name + ' ';
                     }
                     if (results[0].address_components[i].types[0] === 'postal_code') {
+                        self.zipCode = results[0].address_components[i].long_name;
                         addr += results[0].address_components[i].long_name;
                     }
                 }
@@ -109,6 +110,8 @@ function Map() {
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             mapObj.googleMap = new google.maps.Map(element, mapOptions);
+
+            self.map = mapObj.googleMap;
 
             // change map location when coordinates change
             mapObj.onChangeCoord = function(newValue) {
