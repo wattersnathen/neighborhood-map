@@ -74,6 +74,8 @@ function Map() {
                     }
                 }
                 self.viewModel.address(addr);
+                meetup.viewModel.meetups([]);
+                meetup.viewModel.markers([]);
             }
         });
     };
