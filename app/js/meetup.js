@@ -19,6 +19,9 @@ var meetup = {
                     meetup.viewModel.meetups.push(value);                    
                     meetup.viewModel.markers.push(meetup.createMarker(value, map));
                 });
+            },
+            error: function(error) {
+                $('#results').text('Failed retrieving results from the Meetup API');
             }
         })
     },
