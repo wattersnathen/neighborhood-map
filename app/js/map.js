@@ -22,7 +22,17 @@ function Map() {
             lng: ko.observable()
         }),
         address: ko.observable(),
-        meetups: meetup.viewModel.meetups
+        meetups: meetup.viewModel.meetups,
+        markers: meetup.viewModel.markers,
+        clickMarker: function(data) {
+            for (var i in self.viewModel.markers()) {
+                var m = self.viewModel.markers()[i];
+                m.info.close();
+                if (m.id == data.id) {
+                    m.info.open(self.map, m);
+                }
+            }
+        }
     };    
 
     self.getCurrentPosition = function() {
