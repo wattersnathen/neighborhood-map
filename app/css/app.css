@@ -43,7 +43,10 @@ body,
     padding-right: .5em;
     padding-bottom: .5em;
     max-height: 95%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 }
 
 #pac-input {
