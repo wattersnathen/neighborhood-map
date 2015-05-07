@@ -75,6 +75,9 @@ function Map() {
                 }
                 self.viewModel.address(addr);
                 meetup.viewModel.meetups([]);
+                for (var idx = 0; idx < meetup.viewModel.markers().length; idx++) {
+                    meetup.viewModel.markers()[idx].setMap(null);
+                }
                 meetup.viewModel.markers([]);
             }
         });
