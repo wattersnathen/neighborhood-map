@@ -23,3 +23,11 @@ var meetup = {
     },
 };
 meetup.getUpcomingMeetups(10, 80537);
+// custom binding for handling the date format of the events returned.
+ko.bindingHandlers.dateString = {
+    init: function(element, valueAccessor, allBindings, viewModel, bindingContext) {
+        var value = ko.unwrap(valueAccessor());
+        value = moment(value).toDate();
+        $(element).text(moment(value).format('MMMM Do YYYY, h:mm a'));
+    }
+};
