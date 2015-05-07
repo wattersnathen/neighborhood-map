@@ -80,6 +80,7 @@ function Map() {
                     meetup.viewModel.markers()[idx].setMap(null);
                 }
                 meetup.viewModel.markers([]);
+                meetup.getUpcomingMeetups(10, self.zipCode, self.map);
             }
         });
     };
