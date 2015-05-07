@@ -21,6 +21,20 @@ var meetup = {
             }
         })
     },
+
+        var content = 
+            '<div class="infowindow">' +
+                '<a href="' + value.event_url +'" target="_blank" class="eventurl">' +
+                    '<h1>' + value.name + '</h1>' +
+                '</a>' +
+                '<p>' +
+                    '<strong>' + date + '</strong>,&nbsp;' +
+                    '<a href="http://www.meetup.com/' + value.group.urlname + '" target="_blank">' + value.group.name + '</a>' +
+                '</p>' +
+                '<p>' + value.venue.address_1 + '&nbsp;' + value.venue.city + ', ' + value.venue.state + '</p>' +
+                '<p>' + value.description + '</p>' +
+            '</div>';
+
 };
 
 // custom binding for handling the date format of the events returned.
