@@ -3,7 +3,7 @@ var meetup = {
     viewModel: {
         meetups: ko.observableArray([]),
         markers: ko.observableArray([])
-    },    
+    },
     getUpcomingMeetups: function(rad, zipCode, map) {
         var url = 'https://api.meetup.com/2/open_events?sign=true&photo-host=public&status=upcoming&zip=' + zipCode + '&radius=' + rad + '&key=' + meetup.key;
         $.ajax({
@@ -16,14 +16,14 @@ var meetup = {
                     if (!value.hasOwnProperty("venue")) {
                         return;
                     }
-                    meetup.viewModel.meetups.push(value);                    
+                    meetup.viewModel.meetups.push(value);
                     meetup.viewModel.markers.push(meetup.createMarker(value, map));
                 });
             },
             error: function(error) {
                 $('#results').text('Failed retrieving results from the Meetup API');
             }
-        })
+        });
     },
     createMarker: function(value, map) {
         var pos = new google.maps.LatLng(value.venue.lat, value.venue.lon);
