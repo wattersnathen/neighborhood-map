@@ -2,6 +2,7 @@ var meetup = {
     key: '82d672183c733619762e644e64e2c',
     viewModel: {
         meetups: ko.observableArray([]),
+        markers: ko.observableArray([])
     },    
     getUpcomingMeetups: function(rad, zipCode, map) {
         var url = 'https://api.meetup.com/2/open_events?sign=true&photo-host=public&status=upcoming&zip=' + zipCode + '&radius=' + rad + '&key=' + meetup.key;
