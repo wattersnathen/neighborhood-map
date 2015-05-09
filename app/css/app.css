@@ -10,6 +10,10 @@ body,
     height: 100%; 
 }
 
+#map {
+    max-width: none;
+}
+
 a {
     text-decoration: none;
 }
