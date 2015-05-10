@@ -25,11 +25,15 @@ function Map() {
         meetups: meetup.viewModel.meetups,
         markers: meetup.viewModel.markers,
         clickMarker: function(data) {
-            for (var i in self.viewModel.markers()) {
-                var m = self.viewModel.markers()[i];
-                m.info.close();
-                if (m.id == data.id) {
-                    m.info.open(self.map, m);
+            for (var idx in self.viewModel.markers()) {
+                var marker = self.viewModel.markers()[idx];
+                if (marker.open) {
+                    marker.open = false;
+                    marker.info.close();
+                }
+                if (marker.id == data.id) {
+                    marker.open = true;
+                    marker.info.open(self.map, marker);
                 }
             }
         }
@@ -76,15 +80,18 @@ function Map() {
                 }
                 self.viewModel.address(addr);
                 meetup.viewModel.meetups([]);
-                for (var idx = 0; idx < meetup.viewModel.markers().length; idx++) {
+                for (var idx = 0, len = meetup.viewModel.markers().length; idx < len; idx++) {
                     meetup.viewModel.markers()[idx].setMap(null);
                 }
+
                 meetup.viewModel.markers([]);
                 meetup.getUpcomingMeetups(10, self.zipCode, self.map);
             }
         });
     };
-
+    /*
+     * Sets the default position to use on page load if geolocation doesn't work
+     */
     self.setDefaultPosition = function() {
         // coordinates for Boulder, CO. where a lot of Meetups usually are
         self.viewModel.googleMap().lat(40.015);
@@ -92,6 +99,9 @@ function Map() {
         self.getLocationFromLatLng(self.viewModel.googleMap().lat(), self.viewModel.googleMap().lng());
     };
 
+    /*
+     * Knockout.js binding for a Google Maps object
+     */
     ko.bindingHandlers.map = {
         init: function (element, valueAccessor, allBindings, viewModel) {
             var mapObj = ko.utils.unwrapObservable(valueAccessor());
@@ -135,6 +145,7 @@ function Map() {
                 self.getLocationFromLatLng(self.center.A, self.center.F);
             });
 
+            // user changes location from within the search box
             google.maps.event.addListener(self.searchBox, 'places_changed', function() {
                 var places = self.searchBox.getPlaces();
                 var lat = places[0].geometry.location.A;
@@ -145,8 +156,8 @@ function Map() {
 
             });
 
-            mapObj.lat.subscribe(mapObj.onChangeCoord);
-            mapObj.lng.subscribe(mapObj.onChangeCoord);
+            mapObj.lat.subscribe(mapObj.onChangeCoord); // listen to coordinates changed events
+            mapObj.lng.subscribe(mapObj.onChangeCoord); // ''
         }
     };
 }
