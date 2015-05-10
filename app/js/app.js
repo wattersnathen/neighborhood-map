@@ -3,6 +3,7 @@
 
     $(document).ready(function() {
 
+        // Show loading gif during AJAX requests
         $(document).ajaxStart(function() {
             $("#loading").show();
         });
