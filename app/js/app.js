@@ -5,11 +5,16 @@
 
         // Show loading gif during AJAX requests
         $(document).ajaxStart(function() {
-            $("#loading").show();
+            $(".results").text('');
+            $(".loading").show();
         });
 
         $(document).ajaxStop(function() {
-            $("#loading").hide();
+            $(".loading").hide();
+            // display a message to the user if no meetups for the area were found
+            if (map.viewModel.meetups()[0] === undefined) {
+                $(".results").text('It appears that there are no upcoming Meetups in the chosen area. Please search for a new location or try again later.');
+            }
         });
 
         var map = new Map();
@@ -17,4 +22,4 @@
         ko.applyBindings(map.viewModel);
     });
 
-})(); 
+})();
