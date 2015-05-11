@@ -11,14 +11,14 @@
 <body>
     <div id="map" data-bind="map: googleMap"></div>
     <div class="container">
-        <section id="search">
+        <section class="search">
             <input type="text" data-bind="value: address" id="pac-input" class="controls"/>
         </section>
-        <div id="loading" style="display: none;">
+        <div class="loading" style="display: none;">
             <img src="ajax-loader.gif">
             <p>...loading Meetups</p>
         </div>
-        <section id="results" data-bind="foreach: meetups">
+        <section class="results" data-bind="foreach: meetups">
             <div class="meetup" data-bind="click: $root.clickMarker">
                 <a data-bind="attr: { href: event_url }" target="_blank">
                     <h1 data-bind="text: name"></h1>
