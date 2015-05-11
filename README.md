@@ -13,3 +13,17 @@ Find upcoming Meetups in your area.
     <li>Click on an event in the list view or on a marker to view event details</li>
 </ol>
 
+###Legend:
+<figure>
+    <img src="https://github.com/wattersnathen/neighborhood-map/blob/master/app/icons/today1.png"/>
+    <figcaption>What are you doing here!? The Meetup is going on today!</figcaption>
+</figure>
+<br/>
+<figure>
+    <img src="https://github.com/wattersnathen/neighborhood-map/blob/master/app/icons/marker-th.png"/>
+    <figcaption>Meetup is occuring this week.</figcaption>
+</figure>
+<figure>
+    <img src="https://github.com/wattersnathen/neighborhood-map/blob/master/app/icons/map-pin-red-th.png"/>
+    <figcaption>Meetups occuring beyond one week from now.</figcaption>
+</figure>
