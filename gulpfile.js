@@ -5,13 +5,20 @@ var uglify = require('gulp-uglify');
 var minifyHtml = require('gulp-minify-html');
 var minifyCss = require('gulp-minify-css');
 var rev = require('gulp-rev');
+var jshint = require('gulp-jshint');
 
 gulp.task('clean', function() {
     return gulp.src('build/', {read:false})
         .pipe(clean());
 });
 
-gulp.task('usemin', function() {    
+gulp.task('lint', function() {
+    return gulp.src('./app/js/*.js')
+        .pipe(jshint())
+        .pipe(jshint.reporter('default'));
+});
+
+gulp.task('usemin', ['lint'], function() {
     return gulp.src('./app/*.html')
         .pipe(usemin({
             css: [minifyCss()],

@@ -8,14 +8,14 @@ var meetup = {
         markers: ko.observableArray([])
     },
 
-    /* 
+    /*
      * Get the Meetups that have an upcoming event date.
      * @param {Number} rad the radius to search from
-     * @param {Number} zipCode the postal code to search Meetups in
+     * @param {Object} Google Maps LatLng object
      * @param {Object} map a reference to the Google Maps object
      */
-    getUpcomingMeetups: function(rad, zipCode, map) {
-        var url = 'https://api.meetup.com/2/open_events?sign=true&photo-host=public&status=upcoming&zip=' + zipCode + '&radius=' + rad + '&key=' + meetup.key;
+    getUpcomingMeetups: function(rad, pos, map) {
+        var url = 'https://api.meetup.com/2/open_events?sign=true&photo-host=public&status=upcoming&lat=' + pos.A + '&lon=' + pos.F + '&radius=' + rad + '&key=' + meetup.key;
         $.ajax({
             url: url,
             crossDomain: true,
@@ -38,7 +38,7 @@ var meetup = {
 
     /*
      * Create a Google Maps Marker to place on the map
-     * @param {Object} value Meetup result returned from the API 
+     * @param {Object} value Meetup result returned from the API
      * @param {Object} map Reference to the Google Map used
      */
     createMarker: function(value, map) {
@@ -53,7 +53,7 @@ var meetup = {
             icon = 'icons/today1.png';
         } else if (moment(date).subtract(7, 'days') <= moment(today)) {
             // blue icon for this week's Meetups
-            icon = 'icons/marker-th.png';    
+            icon = 'icons/marker-th.png';
         } else {
             // red icon for all other upcoming Meetups
             icon = 'icons/map-pin-red-th.png';
@@ -75,7 +75,7 @@ var meetup = {
         }
 
         // InfoWindow content template
-        var content = 
+        var content =
             '<div class="infowindow">' +
                 '<a href="' + value.event_url +'" target="_blank" class="eventurl">' +
                     '<h1>' + value.name + '</h1>' +
@@ -106,10 +106,10 @@ var meetup = {
 
         // open/close the InfoWindow when marker is clicked
         google.maps.event.addListener(marker, 'click', function() {
-            for (var i in meetup.viewModel.markers()) {
-                if (meetup.viewModel.markers()[i].id != marker.id) {
-                    meetup.viewModel.markers()[i].open = false;
-                    meetup.viewModel.markers()[i].info.close();
+            for (var idx = 0; idx < meetup.viewModel.markers().length; idx++) {
+                if (meetup.viewModel.markers()[idx].id != marker.id) {
+                    meetup.viewModel.markers()[idx].open = false;
+                    meetup.viewModel.markers()[idx].info.close();
                 }
             }
             if (marker.open) {
@@ -119,6 +119,9 @@ var meetup = {
                 marker.open = true;
                 marker.info.open(map, marker);
             }
+
+            // center the map on the marker's position for better viewing
+            map.panTo(marker.getPosition());
         });
 
         return marker;

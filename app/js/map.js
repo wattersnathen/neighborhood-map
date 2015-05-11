@@ -3,13 +3,12 @@ function Map() {
 
     var self = this;
 
-    self.map;
+    self.map = {};
 
     // Reference to the current center of the map.
-    // Used for searching Meetups within 'x' amount of miles from the current center
-    self.center = {}; 
-
-    self.zipCode;
+    // TODO: Calculate the radius from the center of the map's current position
+    //       and use that as the radius parameter in the Meetup API request.
+    self.center = {};
 
     self.searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
 
@@ -25,7 +24,7 @@ function Map() {
         meetups: meetup.viewModel.meetups,
         markers: meetup.viewModel.markers,
         clickMarker: function(data) {
-            for (var idx in self.viewModel.markers()) {
+            for (var idx = 0; idx < self.viewModel.meetups().length; idx++) {
                 var marker = self.viewModel.markers()[idx];
                 if (marker.open) {
                     marker.open = false;
@@ -37,7 +36,7 @@ function Map() {
                 }
             }
         }
-    };    
+    };
 
     self.getCurrentPosition = function() {
         if (navigator.geolocation) {
@@ -48,14 +47,14 @@ function Map() {
                     var lng = position.coords.longitude;
                     self.viewModel.googleMap().lat(lat);
                     self.viewModel.googleMap().lng(lng);
-                    self.getLocationFromLatLng(lat, lng)
+                    self.getLocationFromLatLng(lat, lng);
                 },
                 // geolocation exists, but user denied
                 function error() {
                     self.setDefaultPosition();
                 }
             );
-        } else { 
+        } else {
             // geolocation not defined
             self.setDefaultPosition();
         }
@@ -63,31 +62,14 @@ function Map() {
 
     self.getLocationFromLatLng = function(latitude, longitude) {
         var pos = new google.maps.LatLng(latitude, longitude);
-        self.geocoder.geocode({ 'latLng': pos }, function(results, status) {
-            if (status == google.maps.GeocoderStatus.OK) {
-                var addr = '';
-                for (var i = 0, len = results[0].address_components.length; i < len; i++) {
-                    if (results[0].address_components[i].types[0] === 'locality') {
-                        addr += results[0].address_components[i].long_name + ', ';
-                    }
-                    if (results[0].address_components[i].types[0] === 'administrative_area_level_1') {
-                        addr += results[0].address_components[i].short_name + ' ';
-                    }
-                    if (results[0].address_components[i].types[0] === 'postal_code') {
-                        self.zipCode = results[0].address_components[i].long_name;
-                        addr += results[0].address_components[i].long_name;
-                    }
-                }
-                self.viewModel.address(addr);
-                meetup.viewModel.meetups([]);
-                for (var idx = 0, len = meetup.viewModel.markers().length; idx < len; idx++) {
-                    meetup.viewModel.markers()[idx].setMap(null);
-                }
-
-                meetup.viewModel.markers([]);
-                meetup.getUpcomingMeetups(10, self.zipCode, self.map);
-            }
-        });
+        meetup.viewModel.meetups([]);
+        for (var idx = 0, markersLen = meetup.viewModel.markers().length; idx < markersLen; idx++) {
+            meetup.viewModel.markers()[idx].setMap(null);
+        }
+        meetup.viewModel.markers([]);
+        if (pos.A && pos.F) {
+            meetup.getUpcomingMeetups(10, pos, self.map);
+        }
     };
     /*
      * Sets the default position to use on page load if geolocation doesn't work
@@ -139,7 +121,7 @@ function Map() {
 
             // event fires after user finishes dragging map
             google.maps.event.addListener(mapObj.googleMap, 'dragend', function() {
-                
+
                 // get the updated coordinates for the center of the map
                 self.center = mapObj.googleMap.getCenter();
                 self.getLocationFromLatLng(self.center.A, self.center.F);
