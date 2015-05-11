@@ -106,10 +106,10 @@ var meetup = {
 
         // open/close the InfoWindow when marker is clicked
         google.maps.event.addListener(marker, 'click', function() {
-            for (var i in meetup.viewModel.markers()) {
-                if (meetup.viewModel.markers()[i].id != marker.id) {
-                    meetup.viewModel.markers()[i].open = false;
-                    meetup.viewModel.markers()[i].info.close();
+            for (var idx = 0; idx < meetup.viewModel.markers().length; idx++) {
+                if (meetup.viewModel.markers()[idx].id != marker.id) {
+                    meetup.viewModel.markers()[idx].open = false;
+                    meetup.viewModel.markers()[idx].info.close();
                 }
             }
             if (marker.open) {

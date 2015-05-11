@@ -25,7 +25,7 @@ function Map() {
         meetups: meetup.viewModel.meetups,
         markers: meetup.viewModel.markers,
         clickMarker: function(data) {
-            for (var idx in self.viewModel.markers()) {
+            for (var idx = 0; idx < self.viewModel.meetups().length; idx++) {
                 var marker = self.viewModel.markers()[idx];
                 if (marker.open) {
                     marker.open = false;
