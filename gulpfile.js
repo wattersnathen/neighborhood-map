@@ -27,4 +27,9 @@ gulp.task('movefiles', function() {
         .pipe(gulp.dest('build/icons'));
 });
 
-gulp.task('default', ['usemin', 'movefiles']);
+gulp.task('moveGif', function() {
+    gulp.src('./app/*.gif')
+        .pipe(gulp.dest('build/'));
+});
+
+gulp.task('default', ['usemin', 'movefiles', 'moveGif']);
