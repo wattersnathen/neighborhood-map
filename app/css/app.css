@@ -40,11 +40,11 @@ a {
     bottom: 0;
     left: 0;
     width: 260px;
-    padding: .3em .3em 0;
+    padding: 0.3em 0.3em 0;
     z-index: 999;
     border: 2px solid black;
     background: #cfcfcf;
-    box-shadow: inset 0px .2em 60px 0px rgba(0, 0, 0, 0.9);
+    box-shadow: inset 0px 0.2em 60px 0px rgba(0, 0, 0, 0.9);
 }
 
 #search {
@@ -95,31 +95,31 @@ a {
 
 #pac-input {
     height: 30px;
-    font-size: .8em;
+    font-size: 0.8em;
     width: 100%;
-    padding-left: .5em;
+    padding-left: 0.5em;
     border: 1px solid black;
     box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.4);
 }
 
 .meetup {
     border: 1px solid black;
-    padding: 0 .5em;
-    margin-bottom: .25em;
-    margin-right: .25em;
-    background-color: rgba(176, 60, 63, .8);
+    padding: 0 0.5em;
+    margin-bottom: 0.25em;
+    margin-right: 0.25em;
+    background-color: rgba(176, 60, 63, 0.8);
 }
 
 .meetup:hover {
-    background-color: rgba(176, 60, 63, .65);
+    background-color: rgba(176, 60, 63, 0.65);
 }
 
 .meetup h1 {
-    font-size: .88em;
+    font-size: 0.88em;
     font-weight: 900;
 }
 
 .meetup h2,
 .meetup p {
-    font-size: .8em;
+    font-size: 0.8em;
 }
