@@ -119,6 +119,8 @@ var meetup = {
                 marker.open = true;
                 marker.info.open(map, marker);
             }
+            // center the map on the marker's position for better viewing
+            map.panTo(marker.getPosition());
         });
 
         return marker;
