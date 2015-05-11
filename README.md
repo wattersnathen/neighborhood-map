@@ -23,7 +23,19 @@ Find upcoming Meetups in your area.
     <img src="https://github.com/wattersnathen/neighborhood-map/blob/master/app/icons/marker-th.png"/>
     <figcaption>Meetup is occuring this week.</figcaption>
 </figure>
+<br/>
 <figure>
     <img src="https://github.com/wattersnathen/neighborhood-map/blob/master/app/icons/map-pin-red-th.png"/>
     <figcaption>Meetups occuring beyond one week from now.</figcaption>
 </figure>
+
+###Resources Used:
+<ul>
+    <li><a href="https://www.udacity.com/course/intro-to-ajax--ud110" target="_blank">Udacity - Intro to AJAX</a></li>
+    <li><a href="https://www.udacity.com/course/javascript-design-patterns--ud989" target="_blank">Udacity - JavaScript Design Patterns</a></li>
+    <li>Piazza/Udacity Forums</li>
+    <li><a href="https://developers.google.com/maps/documentation/javascript/" target="_blank">Google Maps v3 API</a></li>
+    <li><a href="http://knockoutjs.com/documentation/introduction.html">Knockout.js Documentation</a></li>
+    <li><a href="http://momentjs.com/docs/" target="_blank">Moment.js Documentation</a> - used for easily working with Date objects</li>
+    <li><a href="http://www.codeproject.com/Tips/674478/Customize-Scrollbars-using-CSS" target="_blank">Create a custom scrollbar</a></li>
+</ul>
