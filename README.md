@@ -51,6 +51,7 @@ Find upcoming Meetups in your area. Whatever location you choose, this app will 
 
 ###Current Issues/Missing Features:
 <ul>
+    <li>Google Maps isn't loading fully on every page load</li>
     <li>Mobile solution is not ideal</li>
     <li>Open InfoWindow disappears on map drag event - hard to keep track of the event</li>
     <li>Map does not adjust to InfoWindow opening - can't read the details without dragging the mouse/map (see previous)</li>
