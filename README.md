@@ -4,7 +4,10 @@ Live Link/Run the application: <a href="http://wattersnathen.github.io/neighborh
 
 <hr/>
 
-Find upcoming Meetups in your area.
+###Project Description:
+Find upcoming Meetups in your area. Whatever location you choose, this app will return all the meetups within a ten mile radius.
+
+<hr/>
 
 ###How to use:
 <ol>
@@ -12,6 +15,8 @@ Find upcoming Meetups in your area.
     <li>Watch the markers show up on screen as the Meetups request is processed</li>
     <li>Click on an event in the list view or on a marker to view event details</li>
 </ol>
+
+<hr/>
 
 ###Legend:
 <figure>
@@ -28,6 +33,8 @@ Find upcoming Meetups in your area.
     <img src="https://github.com/wattersnathen/neighborhood-map/blob/master/app/icons/map-pin-red-th.png"/>
     <figcaption>Meetups occuring beyond one week from now.</figcaption>
 </figure>
+
+<hr/>
 
 ###Resources Used:
 <ul>
