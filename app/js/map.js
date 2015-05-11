@@ -3,13 +3,12 @@ function Map() {
 
     var self = this;
 
-    self.map;
+    self.map = {};
 
     // Reference to the current center of the map.
-    // Used for searching Meetups within 'x' amount of miles from the current center
-    self.center = {}; 
-
-    self.zipCode;
+    // TODO: Calculate the radius from the center of the map's current position
+    //       and use that as the radius parameter in the Meetup API request.
+    self.center = {};
 
     self.searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
 
@@ -37,7 +36,7 @@ function Map() {
                 }
             }
         }
-    };    
+    };
 
     self.getCurrentPosition = function() {
         if (navigator.geolocation) {
@@ -48,14 +47,14 @@ function Map() {
                     var lng = position.coords.longitude;
                     self.viewModel.googleMap().lat(lat);
                     self.viewModel.googleMap().lng(lng);
-                    self.getLocationFromLatLng(lat, lng)
+                    self.getLocationFromLatLng(lat, lng);
                 },
                 // geolocation exists, but user denied
                 function error() {
                     self.setDefaultPosition();
                 }
             );
-        } else { 
+        } else {
             // geolocation not defined
             self.setDefaultPosition();
         }
@@ -122,7 +121,7 @@ function Map() {
 
             // event fires after user finishes dragging map
             google.maps.event.addListener(mapObj.googleMap, 'dragend', function() {
-                
+
                 // get the updated coordinates for the center of the map
                 self.center = mapObj.googleMap.getCenter();
                 self.getLocationFromLatLng(self.center.A, self.center.F);
