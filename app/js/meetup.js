@@ -8,14 +8,14 @@ var meetup = {
         markers: ko.observableArray([])
     },
 
-    /* 
+    /*
      * Get the Meetups that have an upcoming event date.
      * @param {Number} rad the radius to search from
-     * @param {Number} zipCode the postal code to search Meetups in
+     * @param {Object} Google Maps LatLng object
      * @param {Object} map a reference to the Google Maps object
      */
-    getUpcomingMeetups: function(rad, zipCode, map) {
-        var url = 'https://api.meetup.com/2/open_events?sign=true&photo-host=public&status=upcoming&zip=' + zipCode + '&radius=' + rad + '&key=' + meetup.key;
+    getUpcomingMeetups: function(rad, pos, map) {
+        var url = 'https://api.meetup.com/2/open_events?sign=true&photo-host=public&status=upcoming&lat=' + pos.A + '&lon=' + pos.F + '&radius=' + rad + '&key=' + meetup.key;
         $.ajax({
             url: url,
             crossDomain: true,
