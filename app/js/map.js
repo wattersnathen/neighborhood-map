@@ -33,6 +33,7 @@ function Map() {
                 if (marker.id == data.id) {
                     marker.open = true;
                     marker.info.open(self.map, marker);
+                    self.map.panTo(marker.getPosition());
                 }
             }
         }
@@ -69,6 +70,7 @@ function Map() {
         meetup.viewModel.markers([]);
         if (pos.A && pos.F) {
             meetup.getUpcomingMeetups(10, pos, self.map);
+            self.viewModel.address(pos);
         }
     };
     /*
