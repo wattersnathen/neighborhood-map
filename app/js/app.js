@@ -20,6 +20,10 @@
         var map = new Map();
         map.getCurrentPosition();
         ko.applyBindings(map.viewModel);
+        
+        $("#toggle-menu").on('click', function (e) {
+            $(".container").toggle();
+        });
     });
 
 })();
