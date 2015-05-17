@@ -14,7 +14,7 @@ var meetup = {
      * @param {Object} Google Maps LatLng object
      * @param {Object} map a reference to the Google Maps object
      */
-    getUpcomingMeetups: function(rad, pos, map) {
+    getUpcomingMeetups: function (rad, pos, map) {
         var url = 'https://api.meetup.com/2/open_events?sign=true&photo-host=public&status=upcoming&lat=' + pos.A + '&lon=' + pos.F + '&radius=' + rad + '&key=' + meetup.key;
         $.ajax({
             url: url,
