@@ -39,16 +39,17 @@ function Map() {
         }
     };
 
+    // BUG: getCurrentPosition is the culprit for Google maps not rendering fully 
     self.getCurrentPosition = function() {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 // geolocation exists and user allowed
                 function success(position) {
-                    var lat = position.coords.latitude;
-                    var lng = position.coords.longitude;
-                    self.viewModel.googleMap().lat(lat);
-                    self.viewModel.googleMap().lng(lng);
-                    self.getLocationFromLatLng(lat, lng);
+                    self.lat = position.coords.latitude;
+                    self.lng = position.coords.longitude;
+                    self.viewModel.googleMap().lat(self.lat);
+                    self.viewModel.googleMap().lng(self.lng);
+                    self.getLocationFromLatLng(self.viewModel.googleMap().lat(), self.viewModel.googleMap().lng());
                 },
                 // geolocation exists, but user denied
                 function error() {
@@ -78,9 +79,14 @@ function Map() {
      */
     self.setDefaultPosition = function() {
         // coordinates for Boulder, CO. where a lot of Meetups usually are
-        self.viewModel.googleMap().lat(40.015);
-        self.viewModel.googleMap().lng(-105.27);
+        self.lat = 40.015;
+        self.lng = -105.27;
+        
+        self.viewModel.googleMap().lat(self.lat);
+        self.viewModel.googleMap().lng(self.lng);
+        
         self.getLocationFromLatLng(self.viewModel.googleMap().lat(), self.viewModel.googleMap().lng());
+                
     };
 
     /*
@@ -105,7 +111,7 @@ function Map() {
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             mapObj.googleMap = new google.maps.Map(element, mapOptions);
-
+            
             self.map = mapObj.googleMap;
 
             // change map location when coordinates change
@@ -120,6 +126,10 @@ function Map() {
                 self.center = mapObj.googleMap.getCenter();
                 self.getLocationFromLatLng(self.center.A, self.center.F);
             };
+            
+            google.maps.event.addListenerOnce(mapObj.googleMap, 'idle', function () {
+                google.maps.event.trigger(mapObj.googleMap, 'resize');
+            });
 
             // event fires after user finishes dragging map
             google.maps.event.addListener(mapObj.googleMap, 'dragend', function() {
@@ -137,7 +147,12 @@ function Map() {
                 self.getLocationFromLatLng(lat, lng);
                 self.viewModel.googleMap().lat(lat);
                 self.viewModel.googleMap().lng(lng);
-
+            });        
+            
+            google.maps.event.addDomListener(window, 'resize', function () {
+                var center = self.map.getCenter();
+                google.maps.event.trigger(self.map, 'resize');
+                self.map.setCenter(center);
             });
 
             mapObj.lat.subscribe(mapObj.onChangeCoord); // listen to coordinates changed events

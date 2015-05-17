@@ -9,7 +9,10 @@
     <!-- endbuild -->
 </head>
 <body>
-    <div id="map" data-bind="map: googleMap"></div>
+    <div id="wrapper">
+        <div id="map" data-bind="map: googleMap"></div>
+    </div>  
+    
     <div class="container">
         <section class="search">
             <input type="text" data-bind="value: address" id="pac-input" class="controls"/>
@@ -32,8 +35,12 @@
             </div>
         </section>
     </div>
+    
+    <div class="toggle" style="z-index: 99999; position: fixed; top: 0; left: 40%;">
+        <input type="button" value="Toggle Menu" id="toggle-menu" style="padding: 0.5em .8em;"/>
+    </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBIVxF2SP7ozlaVsOfTB8nj-1TJhkP3NsI"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBIVxF2SP7ozlaVsOfTB8nj-1TJhkP3NsI&sensor=true"></script>
     <!-- build:js js/lib.js -->
     <script src="./bower_components/jquery/dist/jquery.min.js"></script>
     <script src="./bower_components/knockout/dist/knockout.js"></script>
