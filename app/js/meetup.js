@@ -31,7 +31,7 @@ var meetup = {
                 });
             },
             error: function(error) {
-                $('#results').text('Failed retrieving results from the Meetup API');
+                $('#results').text('Failed retrieving results from the Meetup API. Please try again later or choose a different location');
             }
         });
     },
